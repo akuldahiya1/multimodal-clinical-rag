@@ -1,0 +1,13 @@
+data/
+indexes/
+*.bin
+*.parquet
+*.mp3
+*.wav
+*.jpg
+*.jpeg
+*.png
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.pdf

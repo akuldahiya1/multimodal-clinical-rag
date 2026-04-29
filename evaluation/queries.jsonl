@@ -1,0 +1,10 @@
+{"qid": "q01", "query": "COVID-19 impact on healthcare systems", "source": "dataset", "modality_hint": "text"}
+{"qid": "q02", "query": "digital health transformation in primary care", "source": "dataset", "modality_hint": "text"}
+{"qid": "q03", "query": "gut microbiota changes during viral infection", "source": "dataset", "modality_hint": "text"}
+{"qid": "q04", "query": "chest X-ray findings in pneumonia", "source": "custom", "modality_hint": "image"}
+{"qid": "q05", "query": "hypertension treatment in primary care settings", "source": "dataset", "modality_hint": "text"}
+{"qid": "q06", "query": "what are the benefits of telemedicine for rural patients", "source": "custom", "modality_hint": "text"}
+{"qid": "q07", "query": "MRI brain scan interpretation in neurological disorders", "source": "custom", "modality_hint": "image"}
+{"qid": "q08", "query": "how does COVID-19 affect lung tissue", "source": "custom", "modality_hint": "text"}
+{"qid": "q09", "query": "antibiotic resistance mechanisms in bacteria", "source": "custom", "modality_hint": "text"}
+{"qid": "q10", "query": "nurse leadership in digital healthcare innovation", "source": "custom", "modality_hint": "text"}

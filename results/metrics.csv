@@ -1,0 +1,31 @@
+system,query,P@10,NDCG@10,MRR
+BM25,COVID-19 impact on healthcare systems,0.9,0.977,1.0
+BM25,MRI brain scan interpretation in neurological disorders,0.7,0.7387,0.5
+BM25,antibiotic resistance mechanisms in bacteria,1.0,1.0,1.0
+BM25,chest X-ray findings in pneumonia,0.4,0.7487,0.5
+BM25,digital health transformation in primary care,0.6,0.898,1.0
+BM25,gut microbiota changes during viral infection,0.8,1.0,1.0
+BM25,how does COVID-19 affect lung tissue,0.8,0.9054,1.0
+BM25,hypertension treatment in primary care settings,0.7,0.8952,1.0
+BM25,nurse leadership in digital healthcare innovation,0.8,1.0,1.0
+BM25,what are the benefits of telemedicine for rural patients,0.7,0.8586,1.0
+Dense,COVID-19 impact on healthcare systems,0.9,0.9504,1.0
+Dense,MRI brain scan interpretation in neurological disorders,0.9,0.9667,1.0
+Dense,antibiotic resistance mechanisms in bacteria,1.0,1.0,1.0
+Dense,chest X-ray findings in pneumonia,0.8,0.986,1.0
+Dense,digital health transformation in primary care,0.7,0.7027,0.3333
+Dense,gut microbiota changes during viral infection,1.0,1.0,1.0
+Dense,how does COVID-19 affect lung tissue,0.7,0.8118,0.5
+Dense,hypertension treatment in primary care settings,1.0,1.0,1.0
+Dense,nurse leadership in digital healthcare innovation,0.9,0.9972,1.0
+Dense,what are the benefits of telemedicine for rural patients,1.0,1.0,1.0
+Hybrid+Rerank,COVID-19 impact on healthcare systems,0.9,0.9938,1.0
+Hybrid+Rerank,MRI brain scan interpretation in neurological disorders,0.9,1.0,1.0
+Hybrid+Rerank,antibiotic resistance mechanisms in bacteria,1.0,1.0,1.0
+Hybrid+Rerank,chest X-ray findings in pneumonia,0.9,0.9938,1.0
+Hybrid+Rerank,digital health transformation in primary care,0.9,0.9667,1.0
+Hybrid+Rerank,gut microbiota changes during viral infection,1.0,1.0,1.0
+Hybrid+Rerank,how does COVID-19 affect lung tissue,0.9,0.977,1.0
+Hybrid+Rerank,hypertension treatment in primary care settings,0.9,0.9972,1.0
+Hybrid+Rerank,nurse leadership in digital healthcare innovation,1.0,1.0,1.0
+Hybrid+Rerank,what are the benefits of telemedicine for rural patients,0.9,0.9896,1.0
