@@ -1,105 +1,105 @@
 # Multimodal Clinical RAG System
-CS734 -- Information Retrieval Course Project
-Student: Akul Dahiya
+
+**CS734 — Introduction to Information Retrieval | Old Dominion University | Spring 2026**
+**Student: Akul Dahiya | adahi001@odu.edu**
+
+---
+
+## Results
+
+| System | P@10 | NDCG@10 | MRR |
+|--------|------|---------|-----|
+| BM25 (baseline) | 0.74 | 0.9022 | 0.9000 |
+| Dense (BioLORD) | 0.89 | 0.9415 | 0.8833 |
+| **Hybrid + Rerank** | **0.93** | **0.9918** | **1.0000** |
+
+- **Faithfulness**: 99.1% (NLI-verified, 9/10 queries at 100%)
+- **Dataset**: 679,137 passages across 4 modalities
+- **GitHub**: https://github.com/akuldahiya1/multimodal-clinical-rag
+
+---
 
 ## Overview
 
-A state-of-the-art Retrieval-Augmented Generation (RAG) system for clinical
-research, supporting four modalities: text, images, audio, and PDFs.
+A hybrid multimodal RAG system for intelligent biomedical search combining
+BM25 + Dense retrieval via RRF fusion, cross-encoder reranking, adaptive
+query understanding, smart PDF routing, and NLI faithfulness verification.
 
-## Architecture
+**Key features:**
+- Hybrid BM25 + Dense retrieval fused via Reciprocal Rank Fusion (RRF)
+- Cross-encoder reranking for precision
+- Adaptive query understanding (visual / clinical / factual / general)
+- Smart PDF routing using embedding-based similarity
+- NLI-based faithfulness verification (99.1% mean faithfulness)
+- Multilingual output (10 languages via deep-translator)
+- Voice input via Whisper ASR
+- Medical image retrieval via BiomedCLIP
+- Gradio web interface with live public demo
 
-```
-4 Modalities --> Ingestion --> Unified FAISS Index
-                                     |
-Query (text/image/voice) --> BM25 + Dense (BioLORD) + RRF Fusion
-                                     |
-                             Cross-Encoder Reranker
-                                     |
-                        Llama-3.2-3B-Instruct (LLM)
-                                     |
-                         Cited, grounded answer
-```
+---
 
-## Technology Choices (all research-backed)
+## Technology Stack
 
-| Component | Choice | Why |
-|-----------|--------|-----|
+| Component | Choice | Reason |
+|-----------|--------|--------|
 | Text embedding | BioLORD-2023-C | Top biomedical BEIR benchmark |
-| Image embedding | BiomedCLIP | Trained on 15M PubMed image-text pairs |
+| Image embedding | BiomedCLIP | 15M PubMed image-text pairs |
 | Audio | OpenAI Whisper | Best open speech-to-text |
-| PDF parsing | PyMuPDF (fitz) | Fastest, most accurate |
-| Retrieval | BM25 + Dense + RRF | Hybrid consistently beats either alone |
-| Reranker | ms-marco MiniLM | Single biggest accuracy boost per research |
+| PDF parsing | PyMuPDF (fitz) | Fast and accurate |
+| BM25 index | Pyserini / Lucene | Standard IR baseline |
+| Dense index | FAISS IndexFlatIP | Efficient cosine similarity |
+| Fusion | Reciprocal Rank Fusion | Beats weighted score combination |
+| Reranker | MiniLM cross-encoder | Highest precision boost |
 | LLM | Llama-3.2-3B-Instruct | Best open model at this size |
+| Verification | DeBERTa NLI | Faithfulness checking |
+| UI | Gradio | Fast web interface |
+| Translation | deep-translator | 10 language output |
 
-## Datasets
+---
 
-| Modality | Dataset | Size |
-|----------|---------|------|
-| Text | PMC Open Access (existing) | 30k articles |
-| Images | PMC-VQA + ROCO v2 | 10k images |
-| Audio | MedQA synthesized | 500 clips |
-| PDFs | PMC Open Access PDFs | 200 documents |
+## Dataset
 
-## Quick Start (Wahab HPC)
+| Modality | Source | Passages |
+|----------|--------|----------|
+| Text | PMC Open Access (30k articles) | 662,362 |
+| Images | PMC-VQA + ROCO v2 | 10,000 |
+| Audio | MedMCQA (gTTS + Whisper) | 500 |
+| PDF | PMC E-utilities API | 6,275 |
+| **Total** | | **679,137** |
 
-```bash
-# 1. Setup (once)
-bash scripts/setup_env.sh
+---
 
-# 2. In JupyterHub, select "Python (rag310)" kernel
-# 3. Run notebooks in order:
-#    01 -> text ingestion (uses existing PMC passages)
-#    02 -> image download
-#    03 -> audio synthesis + transcription
-#    04 -> PDF download + extraction
-#    05 -> build all indexes (takes ~1-2 hrs with GPU)
-#    06 -> retrieval evaluation + P@10
-#    07 -> RAG answer generation
-```
+## Quick Start (ODU Wahab HPC)
 
-## Switching the LLM
-
-Edit one line in `configs/config.py`:
+Run notebooks 01 through 08 in order then launch the UI:
 
 ```python
-# Options:
-LLM_MODEL = "meta-llama/Llama-3.2-3B-Instruct"   # default
-LLM_MODEL = "mistralai/Mistral-7B-Instruct-v0.2"  # better quality
-LLM_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"          # fastest
+exec(open('/home/aakul001/multimodal_rag/app.py').read())
 ```
 
-## Project Structure
+---
+
+## Smart PDF Routing
 
 ```
-multimodal_rag/
-+-- data/
-|   +-- text/         PMC passage parquet (from existing files)
-|   +-- images/       PMC-VQA and ROCO v2 images
-|   +-- audio/        Synthesized MedQA audio files
-|   +-- pdfs/         Downloaded PMC PDFs
-|   `-- processed/    Unified JSONL + metadata parquet
-+-- indexes/
-|   +-- bm25_index/   Pyserini Lucene index
-|   +-- faiss_text.bin  BioLORD text vectors
-|   `-- faiss_image.bin BiomedCLIP image vectors
-+-- src/
-|   +-- ingest/       One module per modality
-|   +-- retrieval.py  Full hybrid pipeline
-|   +-- generation.py LLM answer generation
-|   +-- evaluation.py P@10 / NDCG / MRR metrics
-|   `-- utils.py      Shared helpers
-+-- configs/config.py All settings in one file
-+-- notebooks/        01-07 run in order
-+-- evaluation/       Queries + relevance judgments
-`-- scripts/          HPC setup
+similarity >= 0.42  ->  PDF-focused  (PDF=92%, Global=8%)
+0.35 - 0.42         ->  Balanced     (PDF=50%, Global=50%)
+< 0.35              ->  Global       (PDF=20%, Global=80%)
 ```
 
-## Evaluation Metrics
+---
 
-- Precision@10 (P@10) -- required by assignment
-- NDCG@10 -- accounts for ranking quality
-- MRR (Mean Reciprocal Rank) -- measures first relevant result
+## Evaluation Queries
 
-Systems compared: BM25 | Dense | Hybrid+Rerank
+| QID | Query | Type |
+|-----|-------|------|
+| q01 | COVID-19 impact on healthcare systems | general |
+| q02 | Digital health transformation in primary care | general |
+| q03 | Gut microbiota changes during viral infection | general |
+| q04 | Chest X-ray findings in pneumonia | visual |
+| q05 | Hypertension treatment in primary care | clinical |
+| q06 | Benefits of telemedicine for rural patients | factual |
+| q07 | MRI brain scan interpretation | visual |
+| q08 | How does COVID-19 affect lung tissue | factual |
+| q09 | Antibiotic resistance mechanisms in bacteria | factual |
+| q10 | Nurse leadership in digital healthcare | general |
