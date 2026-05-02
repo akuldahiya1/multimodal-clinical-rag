@@ -1,7 +1,7 @@
 # Multimodal Clinical RAG System
 
 **CS734 — Introduction to Information Retrieval | Old Dominion University | Spring 2026**
-**Student: Akul Dahiya | adahi001@odu.edu**
+**Student: Akul Dahiya | aakul001@odu.edu**
 
 ---
 
