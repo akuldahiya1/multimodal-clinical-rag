@@ -3,7 +3,7 @@ os.environ["PATH"] = "/home/aakul001/.conda/envs/rag310/bin:" + os.environ.get("
 sys.path.insert(0, os.path.expanduser("~/multimodal_rag"))
 os.environ["JAVA_HOME"] = "/home/aakul001/.conda/envs/rag310/lib/jvm"
 os.environ["JVM_PATH"]  = "/home/aakul001/.conda/envs/rag310/lib/jvm/lib/server/libjvm.so"
-os.environ["HF_TOKEN"]  = "YOUR_HF_TOKEN_HERE"
+os.environ["HF_TOKEN"]  = "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"
 
 import gradio as gr
 import pandas as pd
@@ -535,7 +535,7 @@ with gr.Blocks(css=CSS, title="Clinical RAG | Akul Dahiya") as demo:
 tmp_dir = tempfile.gettempdir()
 demo.launch(
     server_name="0.0.0.0",
-    server_port=7895,
+    server_port=7900,
     share=True,
     show_error=True,
     allowed_paths=[

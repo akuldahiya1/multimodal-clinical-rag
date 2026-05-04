@@ -10,7 +10,7 @@ from pathlib import Path
 #  Root paths 
 PROJECT_ROOT = Path.home() / "multimodal_rag"
 
-# Where your existing PMC work lives (from previous project)
+# existing PMC work lives (from previous project)
 LEGACY_PMC_ROOT = Path.home() / "rag_project"
 
 #  Data paths 
@@ -46,7 +46,7 @@ JAVA_HOME = Path.home() / ".conda/envs/rag310/lib/jvm"
 JVM_PATH  = Path.home() / ".conda/envs/rag310/lib/jvm/lib/server/libjvm.so"
 
 #  Text data (existing PMC) 
-# Point to your already-built passages parquet
+# Point to already-built passages parquet
 LEGACY_PASSAGES    = LEGACY_PMC_ROOT / "data_final" / "pmc_30k_passages.parquet"
 PMC_FILE_LIST_URL  = "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_file_list.csv"
 PMC_BASE_URL       = "https://ftp.ncbi.nlm.nih.gov/pub/pmc/"
@@ -58,14 +58,14 @@ MIN_CHUNK_CHARS    = 100    # discard shorter chunks
 #  Image data 
 # PMC-VQA from HuggingFace
 PMCVQA_HF_DATASET  = "xmcmic/PMC-VQA"
-PMCVQA_SAMPLE      = 5000    # how many image-QA pairs to use
+PMCVQA_SAMPLE      = 5000    # image-QA pairs to use
 
 # ROCO v2 (radiology images + captions)
 ROCO_HF_DATASET    = "eltorio/ROCOv2-radiology"
 ROCO_SAMPLE        = 5000
 
 #  Audio data 
-# We synthesize audio from MedQA text questions using gTTS (free)
+# synthesize audio from MedQA text questions using gTTS (free)
 MEDQA_HF_DATASET   = "bigbio/med_qa"
 AUDIO_SAMPLE       = 500     # number of questions to synthesize as audio
 WHISPER_MODEL      = "openai/whisper-base"   # runs on CPU or GPU fine
@@ -97,10 +97,10 @@ RERANK_TOP_N       = 50     # how many candidates to rerank
 #  LLM 
 # Swap to change model -- nothing else needs changing
 #
-# Options (in order of quality/size):
-#   "meta-llama/Llama-3.2-3B-Instruct"         recommended -- good balance
-#   "mistralai/Mistral-7B-Instruct-v0.2"        best quality, needs ~14GB GPU
-#   "Qwen/Qwen2.5-1.5B-Instruct"               fastest, smallest
+# Options :
+#   "meta-llama/Llama-3.2-3B-Instruct"         
+#   "mistralai/Mistral-7B-Instruct-v0.2"        
+#   "Qwen/Qwen2.5-1.5B-Instruct"               
 #
 LLM_MODEL          = "meta-llama/Llama-3.2-3B-Instruct"
 LLM_MAX_INPUT      = 3072   # tokens
