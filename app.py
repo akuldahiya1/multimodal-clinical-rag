@@ -3,7 +3,7 @@ os.environ["PATH"] = "/home/aakul001/.conda/envs/rag310/bin:" + os.environ.get("
 sys.path.insert(0, os.path.expanduser("~/multimodal_rag"))
 os.environ["JAVA_HOME"] = "/home/aakul001/.conda/envs/rag310/lib/jvm"
 os.environ["JVM_PATH"]  = "/home/aakul001/.conda/envs/rag310/lib/jvm/lib/server/libjvm.so"
-os.environ["HF_TOKEN"]  = "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"
+os.environ["HF_TOKEN"]  = "YOUR_HF_TOKEN_HERE"
 
 import gradio as gr
 import pandas as pd
