@@ -181,7 +181,7 @@ def compute_pdf_relevance(query: str) -> float:
     return max(r["score"] for r in results)
 
 
-def route_query(query: str, threshold: float = 0.55) -> dict:
+def route_query(query: str, threshold: float = 0.32) -> dict:
     """
     Decide how to weight PDF vs global retrieval.
 
@@ -210,7 +210,7 @@ def route_query(query: str, threshold: float = 0.55) -> dict:
             "pdf_score":     round(pdf_score, 4),
             "strategy":      "pdf_focused",
         }
-    elif pdf_score >= 0.35:
+    elif pdf_score >= 0.20:
         return {
             "pdf_weight":    0.5,
             "global_weight": 0.5,
